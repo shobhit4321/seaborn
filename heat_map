@@ -1,0 +1,23 @@
+# import libraries
+import seaborn as sns # for data visualization
+import matplotlib.pyplot as plt # for data visualization
+import pandas as pd # for data analysis
+ 
+# load dataset and create DataFrame ready to create heatmap
+flights = sns.load_dataset("flights")
+flights_df = flights.pivot("month", "year", "passengers")
+ 
+# set heatmap size
+plt.figure(figsize= (16,9)) 
+ 
+# create heatmap seaborn
+ 
+cbar_kws = {"shrink":.8,
+           'extend':'both'} 
+ 
+sns.heatmap(flights_df, cmap="inferno", annot = True, fmt = 'd', linewidth = 2, cbar_kws=cbar_kws)
+ 
+plt.title("Heatmap of 'Flights' Dataset", fontsize = 25)
+plt.xlabel("Years", fontsize = 20)
+plt.ylabel("Months", fontsize = 20)
+plt.show()
